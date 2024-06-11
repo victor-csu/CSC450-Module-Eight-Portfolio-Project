@@ -1,0 +1,58 @@
+PROGRAM Thread Counters
+-   Multithreaded concurrent program that counts up to twenty and down to zero.
+
+BEGIN
+    BEGIN
+        Define a "Count" class.
+        - Define a private volatile property "value" - the counter variable in the class.
+        - Define the constructor that takes an integer value and sets it to the counter's value using a setter method.
+        - Define a synchronised getter method for the "value" property.
+        - Define a synchronised setter method for the "value" property and use it in the constructor.
+    END
+
+    BEGIN
+        Define a "CountRunnable" class that implements the "Runnable" interface.
+        -  Define a protected property "threadCount" - an instance of the "Count" class.
+        -  Define the constructor that a "threadCount" value(an instance of the "Count" class) and sets it to the value of the "threadCount" property using a setter.
+        -  Define a setter method for the "setThreadCount" property and use it in the constructor.
+    END
+
+    BEGIN
+        Define a "CountToTwentyRunnable" class that extends the "CountRunnable" class.
+        - Define a "countToTwenty" public method that counts up to twenty using a loop.
+        - The "countToTwenty" increments a global "threadCount" variable.
+        - Print the result of each increment.
+        - Define a "run" method that calls the "countToTwenty" method.
+    END
+
+    BEGIN
+        Define a "CountToZeroRunnable" class that extends the "CountRunnable" class.
+        - Define a "countToZero" public method that counts down to zero using a loop.
+        - The "count_to_zero" decrements a global "threadCount" variable.
+        - Print the result of each decrement.
+        - Define a "run" method that calls the "countToZero" method.
+    END
+
+    BEGIN
+        Define a "CounterThread" class that extends the "Thread" class.
+        - Define a private "ReentrantLock" "mutex" variable
+        - Define the constructor
+          - that takes a "string" value "name" and sets its value to the value of the "name" property of the thread using its setter.
+          - that takes a "ReentrantLock" value "mutex" and sets its value to the value of the "mutex" property using its setter.
+          - that takes a "Runnable" value "runnable" and sets its value to the value of the "runnable" property of the thread.
+        - Define a getter method for the "mutex" property.
+        - Define a setter method for the "mutex" property and use it in the constructor.
+        - Define a static method - "details", that takes a String argument - "name" and prints the following thread details:
+          - thread id
+          - process id
+        - Define a  method - "details", that calls the static "details" method with the current thread’s name
+        - Define a "run" function that executes the thread's runnable class and controls access to the shared count variable using the mutex property.
+    END
+
+    Define a "Main" class.
+    Define a "main" method inside the class.
+    - The main method should create the "countToTwenty(CounterThread instance)" thread using the corresponding "CountToZeroRunnable" instance, and the global counter("Count" instance) and mutex("ReentrantLock" instance).
+    - The main method should create the "countToZero(CounterThread instance)" thread using the corresponding "CountToZeroRunnable" instance, and the global counter("Count" instance) and mutex("ReentrantLock" instance).
+    - Both threads should be started and run concurrently
+    - The "counter" global variable state should be valid at the end of the program run.
+END
